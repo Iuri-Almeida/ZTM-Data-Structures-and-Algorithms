@@ -10,33 +10,34 @@ class Stack:
         self.bottom = None
         self.length = 0
 
-    def __traverse_to_index(self, index):
-        i = 0
-        node = self.bottom
-        while i != index:
+    def __repr__(self):
+        node = self.top
+        nodes = []
+        while node is not None:
+            nodes.append(str(node.data))
             node = node.next
-            i += 1
-        return node
+        nodes.append("None")
+        return " --> ".join(nodes)
 
     def peek(self):
         return self.top.data if self.top is not None else self.top
 
     def pop(self):
-        if self.length == 1:
-            self.top = self.bottom = None
-        else:
-            node = self.__traverse_to_index(self.length - 2)
-            node.next = None
-            self.top = node
+        if self.is_empty():
+            raise ReferenceError("Stack already empty! You can't remove from nothing.")
+
+        if self.bottom == self.top:
+            self.bottom = None
+        self.top = self.top.next
         self.length -= 1
 
     def push(self, value):
         new_node = Node(value)
         if self.is_empty():
-            self.bottom = new_node
+            self.bottom = self.top = new_node
         else:
-            self.top.next = new_node
-        self.top = new_node
+            new_node.next = self.top
+            self.top = new_node
         self.length += 1
 
     def is_empty(self):
@@ -48,19 +49,27 @@ print(my_stack.is_empty())
 my_stack.push("Google")
 my_stack.push("Udemy")
 my_stack.push("Discord")
-print(my_stack.peek())
-my_stack.pop()
-print(my_stack.peek())
-print(my_stack.top.data)
-print(my_stack.bottom.data)
-print(my_stack.length)
+print(my_stack)
+# print(my_stack.peek())
+# print(my_stack.top.data)
+# print(my_stack.bottom.data)
+# print(my_stack.length)
 print("-" * 20)
 my_stack.pop()
-print(my_stack.peek())
-print(my_stack.top.data)
-print(my_stack.bottom.data)
-print(my_stack.length)
+print(my_stack)
+# print(my_stack.peek())
+# print(my_stack.top.data)
+# print(my_stack.bottom.data)
+# print(my_stack.length)
 print("-" * 20)
 my_stack.pop()
-print(my_stack.peek())
+print(my_stack)
+# print(my_stack.peek())
+# print(my_stack.top.data)
+# print(my_stack.bottom.data)
+# print(my_stack.length)
+print("-" * 20)
+my_stack.pop()
+print(my_stack)
+# print(my_stack.peek())
 print(my_stack.is_empty())
