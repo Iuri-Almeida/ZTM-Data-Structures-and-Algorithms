@@ -14,21 +14,13 @@ class Queue:
         self.length = 0
 
     def __repr__(self):
-        node = self.last
+        node = self.first
         nodes = []
         while node is not None:
             nodes.append(str(node))
             node = node.next
         nodes.append("None")
         return " --> ".join(nodes)
-
-    def __traverse_to_index(self, index):
-        i = 0
-        node = self.last
-        while i != index:
-            node = node.next
-            i += 1
-        return node
 
     def peek(self):
         return self.first
@@ -38,7 +30,7 @@ class Queue:
         if self.is_empty():
             self.first = new_node
         else:
-            new_node.next = self.last
+            self.last.next = new_node
         self.last = new_node
         self.length += 1
 
@@ -46,12 +38,9 @@ class Queue:
         if self.is_empty():
             raise ReferenceError("Queue already empty! You can't remove from nothing.")
 
-        if self.length == 1:
-            self.first = self.last = None
-        else:
-            node = self.__traverse_to_index(self.length - 2)
-            node.next = None
-            self.first = node
+        if self.first == self.last:
+            self.last = None
+        self.first = self.first.next
         self.length -= 1
 
     def is_empty(self):
