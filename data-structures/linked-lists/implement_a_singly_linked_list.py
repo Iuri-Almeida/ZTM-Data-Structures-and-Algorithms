@@ -7,7 +7,7 @@ class Node:
         return self.data
 
 
-class MyLinkedList:
+class SinglyLinkedList:
     def __init__(self, value):
         self.head = Node(value)
         self.tail = self.head
@@ -74,22 +74,68 @@ class MyLinkedList:
         node.next = node.next.next
         self.length -= 1
 
+    def reverse_first_solution(self):  # O(n) - T.C. / O(n) - S.C.
+        if self.head.next is None:
+            return self
 
-my_linked_list = MyLinkedList(10)
+        # create list with all the LL elements
+        arr = []
+        for i in range(self.length):
+            arr.append(self.get(i))
+        # reverse the list
+        l, r = 0, len(arr) - 1
+        while l < r:
+            arr[l], arr[r] = arr[r], arr[l]
+            l, r = l + 1, r - 1
+        # delete all the LL elements
+        for i in range(self.length - 1):
+            self.pop()
+        # insert all the elements on the list into the LL
+        self.head = self.tail = Node(arr[0])
+        for i in range(1, len(arr)):
+            self.append(arr[i])
+
+    def reverse(self):  # O(n) - T.C. / O(1) - S.C.
+        if self.head.next is None:
+            return self
+
+        # reference the tail, first and second elements
+        self.tail = self.head
+        first = self.head
+        second = first.next
+        # loop while there is something after
+        while second is not None:
+            # reference the third element
+            third = second.next
+            # change the references of first and second element
+            second.next = first
+            first = second
+            second = third
+        # Exclude tail.next reference
+        self.tail.next = None
+        # reference the new head (first = last element, second = None)
+        self.head = first
+
+
+my_linked_list = SinglyLinkedList(10)
 my_linked_list.append(5)
 my_linked_list.prepend(16)
 my_linked_list.insert(3, 1)
 print(my_linked_list)
-print(my_linked_list.get(1))
-my_linked_list.delete(2)
+# print(my_linked_list.get(1))
+# my_linked_list.delete(2)
+# print(my_linked_list)
+# print(my_linked_list.tail.data)
+# my_linked_list.insert(200, 99999)
+# print(my_linked_list)
+# print(my_linked_list.tail.data)
+# my_linked_list.delete(9999992828)
+# print(my_linked_list)
+# print(my_linked_list.tail.data)
+# my_linked_list.pop()
+# print(my_linked_list)
+# print(my_linked_list.tail.data)
+print("-" * 20)
+# my_linked_list.reverse_first_solution()
+my_linked_list.reverse()
 print(my_linked_list)
-print(my_linked_list.tail.data)
-my_linked_list.insert(200, 99999)
-print(my_linked_list)
-print(my_linked_list.tail.data)
-my_linked_list.delete(9999992828)
-print(my_linked_list)
-print(my_linked_list.tail.data)
-my_linked_list.pop()
-print(my_linked_list)
-print(my_linked_list.tail.data)
