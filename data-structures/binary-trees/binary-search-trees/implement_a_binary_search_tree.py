@@ -68,41 +68,52 @@ class BinarySearchTree:
         if node is None:
             raise IndexError(f"Could not find the value = {value}")
 
-        # if it's on the right side
+        # right child
         if node.data > prev_node.data:
+            # with right child
             if node.right is not None:
                 node_right = node.right
                 while node_right.left is not None and node_right.left.left is not None:
                     node_right = node_right.left
+                # right child with no left child
                 if node_right.left is None:
                     prev_node.right = node_right
                     node_right.left = node.left
+                # right child with left child
                 else:
-                    prev_node.right = node_right.left
-                    node_right.left = node_right.left.right
-                    node_right.left.left = node.left
-                    node_right.left.right = node.right
+                    prev_node.right = node_right.left  # first
+                    node_right.left.left = node.left  # second
+                    node_right.left = node_right.left.right  # third
+                    prev_node.right.right = node.right  # fourth
+            # no right child
             else:
                 prev_node.right = node.left
+        # left child
         else:
+            # with right child
             if node.right is not None:
                 node_right = node.right
                 while node_right.left is not None and node_right.left.left is not None:
                     node_right = node_right.left
+                # right child with no left child
                 if node_right.left is None:
                     prev_node.left = node_right
                     node_right.left = node.left
+                # right child with left child
                 else:
-                    prev_node.left = node_right.left
-                    node_right.left = node_right.left.right
-                    node_right.left.left = node.left
-                    node_right.left.right = node.right
+                    prev_node.left = node_right.left  # first
+                    node_right.left.left = node.left  # second
+                    node_right.left = node_right.left.right  # third
+                    prev_node.left.right = node.right  # fourth
+            # no right child
             else:
                 prev_node.left = node.left
         return node.data
 
 
 my_tree = BinarySearchTree()
+
+# testing left side
 my_tree.insert(41)
 my_tree.insert(20)
 my_tree.insert(29)
@@ -114,11 +125,49 @@ my_tree.insert(24)
 my_tree.insert(22)
 my_tree.insert(23)
 my_tree.insert(21)
-# print(my_tree.lookup(2092))
-print(my_tree.remove(20))
+print(f"Removed: {my_tree.remove(20)}")
+print(f"Removed: {my_tree.remove(25)}")
+print(f"Root [41]: {my_tree.root.data}")
 print(f"Root-Left [21]: {my_tree.root.left.data}")
 print(f"Root-Left-Left [11]: {my_tree.root.left.left.data}")
 print(f"Root-Left-Right [29]: {my_tree.root.left.right.data}")
+print(f"Root-Left-Right-Right [32]: {my_tree.root.left.right.right.data}")
+print(f"Root-Left-Right-Left [28]: {my_tree.root.left.right.left.data}")
+print(f"Root-Left-Right-Left-Right [None]: {my_tree.root.left.right.left.right}")
+print(f"Root-Left-Right-Left-Left [24]: {my_tree.root.left.right.left.left.data}")
 print(f"Root-Left-Right-Left-Left-Left [22]: {my_tree.root.left.right.left.left.left.data}")
-print(f"Root-Left-Right-Left-Left-Left [None]: {my_tree.root.left.right.left.left.left}")
+print(f"Root-Left-Right-Left-Left-Left-Right [23]: {my_tree.root.left.right.left.left.left.right.data}")
+print(f"Root-Left-Right-Left-Left-Left-Left [None]: {my_tree.root.left.right.left.left.left.left}")
+# print(f"Root-Left-Right-Left-Left-Left-Left-Right [None]: {my_tree.root.left.right.left.left.left.left.right}")
+# print(f"Root-Left-Right-Left-Left-Left-Left-Left [None]: {my_tree.root.left.right.left.left.left.left.left}")
 
+print("-" * 30)
+
+# testing right side
+# my_tree.insert(41)
+my_tree.insert(70)
+my_tree.insert(52)
+my_tree.insert(90)
+my_tree.insert(92)
+my_tree.insert(78)
+my_tree.insert(84)
+my_tree.insert(74)
+my_tree.insert(72)
+my_tree.insert(73)
+my_tree.insert(71)
+print(f"Removed: {my_tree.remove(70)}")
+print(f"Removed: {my_tree.remove(78)}")
+print(f"Root [41]: {my_tree.root.data}")
+print(f"Root-Right [71]: {my_tree.root.right.data}")
+print(f"Root-Right-Left [52]: {my_tree.root.right.left.data}")
+print(f"Root-Right-Right [90]: {my_tree.root.right.right.data}")
+print(f"Root-Right-Right-Right [92]: {my_tree.root.right.right.right.data}")
+print(f"Root-Right-Right-Left [84]: {my_tree.root.right.right.left.data}")
+print(f"Root-Right-Right-Left-Right [None]: {my_tree.root.right.right.left.right}")
+print(f"Root-Right-Right-Left-Left [74]: {my_tree.root.right.right.left.left.data}")
+print(f"Root-Right-Right-Left-Left-Right [None]: {my_tree.root.right.right.left.left.right}")
+print(f"Root-Right-Right-Left-Left-Left [72]: {my_tree.root.right.right.left.left.left.data}")
+print(f"Root-Right-Right-Left-Left-Left-Right [73]: {my_tree.root.right.right.left.left.left.right.data}")
+print(f"Root-Right-Right-Left-Left-Left-Left [None]: {my_tree.root.right.right.left.left.left.left}")
+# print(f"Root-Right-Right-Left-Left-Left-Left-Right [None]: {my_tree.root.right.right.left.left.left.left.right}")
+# print(f"Root-Right-Right-Left-Left-Left-Left-Left [None]: {my_tree.root.right.right.left.left.left.left.left}")
