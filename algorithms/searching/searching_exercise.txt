@@ -1,0 +1,6 @@
+# 01 - If you know a solution is not far from the root of the tree: BSF
+# 02 - If the tree is very deep and solutions are rare: BFS (DFS will take too long)
+# 03 - If the tree is very wide: DFS (BFS will need too much memory)
+# 04 - If solutions are frequent but located deep in the tree: DFS
+# 05 - Determining whether a path exists between two nodes: DFS
+# 06 - Finding the shortest path: BFS
