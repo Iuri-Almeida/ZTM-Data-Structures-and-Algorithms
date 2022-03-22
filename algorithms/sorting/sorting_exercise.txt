@@ -1,0 +1,61 @@
+# 01 - Sort 10 schools around your house by distance:
+    -> Insertion Sort
+    -> Pros:
+        - Works really well with small inputs
+        - Easy to code
+        - Space Complexity O(1)
+    -> Cons:
+
+# 02 - eBay sorts listing by the current Bid amount:
+    -> Radix Sort or Counting Sort
+    -> Pros:
+        - Bid is a number between an interval
+        - Fixed length of integers
+    -> Cons:
+
+# 03 - Sort scores on ESPN:
+    -> Quick Sort
+    -> Pros:
+        - Space Complexity of O(log n)
+    -> Cons:
+
+# 04 - Massive database (can't fit all into memory) needs to sort through past year's user data:
+    -> Merge Sort
+    -> Pros:
+        - Guarantee a Time Complexity of O(nlog n)
+        - Better one if you don't know the worst case
+    -> Cons:
+        - O(n) for Space Complexity
+
+# 05 - Almost sorted Udemy review data needs to update and add 2 new reviews:
+    -> Insertion Sort
+    -> Pros:
+        - Works really well with smalls inputs and almost sorted data
+        - Space Complexity O(1)
+    -> Cons:
+        - If data is not so sorted, it can have a O(n²)
+
+# 06 - Temperature Records for the past 50 years in Canada:
+    -> Quick Sort (if data are integers and can be put in an interval -> Radix Sort or Counting Sort)
+    -> Pros:
+        - In average, have O(nlog n) for Time Complexity
+        - Space Complexity of O(log n)
+    -> Cons:
+        - Can have worst case of O(n²) for Time Complexity (Quick Sort)
+
+# 07 - Large username database needs to be sorted. Data is very random:
+    -> Merge Sort or Quick Sort
+    -> Pros:
+        - No worries about time in worst cases (Merge Sort)
+        - No worries with space in memory (Quick Sort)
+    -> Cons:
+        - Can have problem with space in memory (Merge Sort)
+        - Can have problems with time in worst cases
+
+# 08 - You want to teach sorting for the first time:
+    -> Bubble Sort or Selection Sort
+    -> Pros:
+        - Easy to explain and code
+        - Much better than the other ones (for teaching for the first time)
+    -> Cons:
+        - Get frustrated when you show them the other ones
