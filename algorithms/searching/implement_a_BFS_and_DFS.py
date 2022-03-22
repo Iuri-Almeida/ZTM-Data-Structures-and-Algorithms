@@ -140,6 +140,20 @@ class BinarySearchTree:
 
         return self.breadth_first_search_recursive(queue, array)
 
+    def __traverse_in_order(self, node, arr):
+        if node.left is not None:
+            self.__traverse_in_order(node.left, arr)
+
+        arr.append(node.data)
+
+        if node.right is not None:
+            self.__traverse_in_order(node.right, arr)
+
+        return arr
+
+    def depth_first_search_in_order(self):
+        return self.__traverse_in_order(self.root, [])
+
 
 my_tree = BinarySearchTree()
 my_tree.insert(9)
@@ -151,3 +165,4 @@ my_tree.insert(15)
 my_tree.insert(1)
 print(f"BFS [Iterative]: {my_tree.breadth_first_search()}")
 print(f"BFS [Recursive]: {my_tree.breadth_first_search_recursive([my_tree.root], [])}")
+print(f"DFS [InOrder]: {my_tree.depth_first_search_in_order()}")
