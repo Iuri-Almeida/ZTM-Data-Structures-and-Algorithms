@@ -4,14 +4,21 @@ def insertion_sort(arr):
     length = len(arr)
     for i in range(1, length):
         if arr[i] <= arr[0]:
-            arr.insert(0, arr.pop(i))
+            aux = arr[i]
+            for k in range(i, 0, -1):
+                arr[k] = arr[k - 1]
+            arr[0] = aux
         else:
+            pos = i
             for j in range(i - 1, -1, -1):
-                if arr[i] > arr[j]:
-                    arr.insert(j + 1, arr.pop(i))
+                if arr[pos] > arr[j]:
                     break
+                aux = arr[pos]
+                arr[pos] = arr[j]
+                arr[j] = aux
+                pos -= 1
 
 
-array = [0, 1, 2, 3, 5, 4, 6]
+array = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0]
 insertion_sort(array)
 print(array)
