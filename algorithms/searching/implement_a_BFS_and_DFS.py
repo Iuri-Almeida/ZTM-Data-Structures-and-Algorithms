@@ -126,6 +126,20 @@ class BinarySearchTree:
 
         return array
 
+    def breadth_first_search_recursive(self, queue, array):
+        if len(queue) == 0:
+            return array
+
+        cur_node = queue.pop(0)  # implement a better solution
+        array.append(cur_node.data)
+        if cur_node.left is not None:
+            queue.append(cur_node.left)
+
+        if cur_node.right is not None:
+            queue.append(cur_node.right)
+
+        return self.breadth_first_search_recursive(queue, array)
+
 
 my_tree = BinarySearchTree()
 my_tree.insert(9)
@@ -135,4 +149,5 @@ my_tree.insert(20)
 my_tree.insert(170)
 my_tree.insert(15)
 my_tree.insert(1)
-print(my_tree.breadth_first_search())
+print(f"BFS [Iterative]: {my_tree.breadth_first_search()}")
+print(f"BFS [Recursive]: {my_tree.breadth_first_search_recursive([my_tree.root], [])}")
