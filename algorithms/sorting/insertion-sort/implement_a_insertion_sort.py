@@ -19,6 +19,17 @@ def insertion_sort(arr):
                 pos -= 1
 
 
+# O(n²) - Time Complexity
+# O(1) - Space Complexity
+def insertion_sort_02(arr):
+    for i in range(1, len(arr)):
+        num, j = arr[i], i - 1
+        while j >= 0 and num < arr[j]:
+            arr[j + 1] = arr[j]
+            j -= 1
+        arr[j + 1] = num
+
+
 array = [99, 44, 6, 2, 1, 5, 63, 87, 283, 4, 0]
-insertion_sort(array)
+insertion_sort_02(array)
 print(array)
